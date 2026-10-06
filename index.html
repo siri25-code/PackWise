@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PackWise – AI Food Packaging Recommender</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="top">
+    <h1>PackWise</h1>
+    <p>AI-based intelligent packaging material recommendation for food commodities</p>
+    <small>Smart India Hackathon 2026 · PS 26236 · MoFPI</small>
+  </header>
+
+  <main>
+    <section class="panel" aria-labelledby="inputs-h">
+      <h2 id="inputs-h">Tell us about your product</h2>
+      <form id="form">
+        <label>Food commodity
+          <select id="commodity" required></select>
+        </label>
+
+        <div class="row">
+          <label>Storage temperature (°C)
+            <input type="number" id="temp" value="25" min="-20" max="50" />
+          </label>
+          <label>Relative humidity (%)
+            <input type="number" id="rh" value="65" min="10" max="100" />
+          </label>
+        </div>
+
+        <div class="row">
+          <label>Target shelf life (days)
+            <input type="number" id="shelf" value="90" min="1" max="730" />
+          </label>
+          <label>Transport time (days)
+            <input type="number" id="transport" value="3" min="0" max="60" />
+          </label>
+        </div>
+
+        <label>Priority: <span id="prioLabel">Balanced</span>
+          <input type="range" id="priority" min="0" max="2" step="1" value="1" />
+          <span class="scale"><span>Lowest cost</span><span>Balanced</span><span>Eco-friendly</span></span>
+        </label>
+
+        <button type="submit">Recommend packaging</button>
+      </form>
+    </section>
+
+    <section class="panel" aria-live="polite">
+      <h2>Recommendation</h2>
+      <div id="profile" class="profile hidden"></div>
+      <div id="results">
+        <p class="empty">Choose a commodity and storage conditions, then select <b>Recommend packaging</b>.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>Prototype uses a rule-based scoring model. Replace with a trained ML model and real barrier-property datasets for production.</footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
