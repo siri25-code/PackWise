@@ -3,61 +3,76 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>PackWise – AI Food Packaging Recommender</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>PackWise</title>
+  <style>
+    :root { --brand:#0f5c4a; --accent:#f2c230; --ink:#12261f; --muted:#5b6e66; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      font-family: "Segoe UI", system-ui, sans-serif;
+      background: #eef3f0;
+      color: var(--ink);
+      text-align: center;
+      padding: 24px;
+    }
+    .logo-wrap { max-width: 420px; }
+    .logo { width: 150px; height: 150px; }
+    h1 { margin: 16px 0 4px; font-size: 2.6rem; letter-spacing: -1px; color: var(--brand); }
+    p { margin: 0 auto 6px; color: var(--muted); max-width: 34ch; }
+    small { display: block; margin: 14px 0 26px; color: var(--muted); }
+    a.btn {
+      display: inline-block;
+      background: var(--brand);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      padding: 12px 28px;
+      border-radius: 8px;
+      border-bottom: 4px solid var(--accent);
+    }
+    a.btn:hover { background: #0b4637; }
+    a.btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+    /* one entrance animation on load */
+    @media (prefers-reduced-motion: no-preference) {
+      .logo { animation: pop 0.8s ease-out both; }
+      @keyframes pop {
+        from { opacity: 0; transform: scale(0.7) rotate(-8deg); }
+        to   { opacity: 1; transform: scale(1) rotate(0); }
+      }
+    }
+  </style>
 </head>
 <body>
-  <header class="top">
+  <div class="logo-wrap">
+    <!-- LOGO -->
+    <svg class="logo" viewBox="0 0 120 120" role="img" aria-label="PackWise logo">
+      <rect width="120" height="120" rx="26" fill="#0f5c4a"/>
+      <!-- package (hexagon box) -->
+      <polygon points="60,18 96,38 96,82 60,102 24,82 24,38"
+               fill="none" stroke="#ffffff" stroke-width="5" stroke-linejoin="round"/>
+      <!-- leaf -->
+      <path d="M60 80 C44 72 46 52 62 44 C76 52 76 72 60 80 Z" fill="#f2c230"/>
+      <path d="M60 80 L62 52" stroke="#0f5c4a" stroke-width="3" stroke-linecap="round"/>
+      <!-- AI nodes -->
+      <g fill="#f2c230">
+        <circle cx="60" cy="18" r="5"/>
+        <circle cx="96" cy="38" r="5"/>
+        <circle cx="96" cy="82" r="5"/>
+        <circle cx="60" cy="102" r="5"/>
+        <circle cx="24" cy="82" r="5"/>
+        <circle cx="24" cy="38" r="5"/>
+      </g>
+    </svg>
+
     <h1>PackWise</h1>
-    <p>AI-based intelligent packaging material recommendation for food commodities</p>
-  </header>
+    <p>AI-based packaging material recommendations for food commodities</p>
+    
 
-  <main>
-    <section class="panel" aria-labelledby="inputs-h">
-      <h2 id="inputs-h">Tell us about your product</h2>
-      <form id="form">
-        <label>Food commodity
-          <select id="commodity" required></select>
-        </label>
-
-        <div class="row">
-          <label>Storage temperature (°C)
-            <input type="number" id="temp" value="25" min="-20" max="50" />
-          </label>
-          <label>Relative humidity (%)
-            <input type="number" id="rh" value="65" min="10" max="100" />
-          </label>
-        </div>
-
-        <div class="row">
-          <label>Target shelf life (days)
-            <input type="number" id="shelf" value="90" min="1" max="730" />
-          </label>
-          <label>Transport time (days)
-            <input type="number" id="transport" value="3" min="0" max="60" />
-          </label>
-        </div>
-
-        <label>Priority: <span id="prioLabel">Balanced</span>
-          <input type="range" id="priority" min="0" max="2" step="1" value="1" />
-          <span class="scale"><span>Lowest cost</span><span>Balanced</span><span>Eco-friendly</span></span>
-        </label>
-
-        <button type="submit">Recommend packaging</button>
-      </form>
-    </section>
-
-    <section class="panel" aria-live="polite">
-      <h2>Recommendation</h2>
-      <div id="profile" class="profile hidden"></div>
-      <div id="results">
-        <p class="empty">Choose a commodity and storage conditions, then select <b>Recommend packaging</b>.</p>
-      </div>
-    </section>
-  </main>
-
-  <footer>Prototype uses a rule-based scoring model. Replace with a trained ML model and real barrier-property datasets for production.</footer>
-
-  <script src="script.js"></script>
+    <a class="btn" href="home.html">Get started</a>
+  </div>
 </body>
 </html>
